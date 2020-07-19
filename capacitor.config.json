@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.wybeturing.quicklists",
   "appName": "quicklists",
   "bundledWebRuntime": false,
   "npmClient": "npm",
