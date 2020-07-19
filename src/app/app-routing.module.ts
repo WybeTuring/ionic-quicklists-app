@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/checklists',
     pathMatch: 'full'
   },
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
   },
   {
-    path: 'checklist',
+    path: 'checklist/:id',
     loadChildren: () => import('./checklist/checklist.module').then( m => m.ChecklistPageModule)
   },
 ];
