@@ -1,18 +1,32 @@
-import { Component, ViewChild } from '@angular/core';
-import {AlertController, IonList} from "@ionic/angular";
+import { Component, ViewChild , OnInit} from '@angular/core';
+import {AlertController, IonList, NavController} from "@ionic/angular";
 import {ChecklistDataService} from "../services/checklist-data.service";
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   @ViewChild(IonList, {static: false}) slidingList: IonList;
 
-  constructor(public dataService: ChecklistDataService, private alertCtrl: AlertController) {}
+  constructor(public dataService: ChecklistDataService, private alertCtrl: AlertController, 
+    private storage: Storage, private navCtrl: NavController) {}
 
+ 
+  ngOnInit(){
+
+    this.storage.get("intoShown").then(result => {
+      if(result == null){
+        this.storage.set("intoShown", true);
+        this.navCtrl.navigateRoot("/intro");
+      }
+    })
+  }
+ 
+ 
   addChecklist(): void {
     this.alertCtrl.create({
       header: "New Checklist",

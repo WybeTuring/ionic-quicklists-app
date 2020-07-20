@@ -16,9 +16,11 @@ export class ChecklistPage implements OnInit {
   private slug: string;
   public checklist: Checklist;
 
-  constructor(private alertCtrl: AlertController, private route: ActivatedRoute, private dataService: ChecklistDataService) {
-
-   }
+  constructor(
+    private alertCtrl: AlertController,
+    private route: ActivatedRoute, 
+    private dataService: ChecklistDataService
+    ) {}
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('id');

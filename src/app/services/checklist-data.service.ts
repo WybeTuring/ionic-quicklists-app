@@ -13,8 +13,8 @@ export class ChecklistDataService {
   constructor(private storage: Storage) { }
 
   load(): Promise<boolean>{
-    return new Promise((resolve) => {
-      this.storage.get('checklists').then((checklists) => {
+    return new Promise(resolve => {
+      this.storage.get('checklists').then(checklists => {
         if(checklists != null){
           this.checklists = checklists;
         }
