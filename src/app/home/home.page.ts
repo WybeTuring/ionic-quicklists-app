@@ -13,11 +13,70 @@ export class HomePage {
 
   constructor(public dataService: ChecklistDataService, private alertCtrl: AlertController) {}
 
-  addChecklist(): void {}
+  addChecklist(): void {
+    this.alertCtrl.create({
+      header: "New Checklist",
+      message: "Enter the name of your new checklist below:",
 
-  renameChecklist(checklist): void {}
+      inputs: [{
+        type: 'text',
+        name: 'name'
+      }],
 
-  removeChecklist(checklist): void {}
+      buttons: [
+
+        {
+        text: "Cancel"
+        },
+
+        {
+          text: "Save",
+          handler: (data) => {
+            this.dataService.createChecklist(data);
+          }
+        }
+
+    ]
+    }).then((prompt) => {
+      prompt.present();
+    });
+  }
+
+  renameChecklist(checklist): void {
+    this.alertCtrl.create({
+      header: "Rename Checklist",
+      message: "Enter the new name of this checklist below:",
+
+      inputs: [
+        {
+          type: "text",
+          name: "name"
+        }
+      ],
+
+      buttons: [
+
+        {
+          text: "Cancel"
+        },
+
+        {
+          text: "Save",
+          handler: (data) => {
+            this.dataService.renameChecklist(checklist, data);
+          }
+        }
+      ]
+    }).then((prompt) => {
+      prompt.present();
+    });
+  }
+
+  removeChecklist(checklist): void {
+    this.slidingList.closeSlidingItems().then(() => {
+      this.dataService.removeChecklist(checklist);
+    });
+  }
 
 
 }
