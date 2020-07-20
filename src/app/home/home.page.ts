@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import {AlertController, IonList} from "@ionic/angular";
+import {ChecklistDataService} from "../services/checklist-data.service";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  @ViewChild(IonList, {static: false}) slidingList: IonList;
+
+  constructor(public dataService: ChecklistDataService, private alertCtrl: AlertController) {}
+
+  addChecklist(): void {}
+
+  renameChecklist(checklist): void {}
+
+  removeChecklist(checklist): void {}
+
 
 }
